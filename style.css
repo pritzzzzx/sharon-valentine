@@ -1,0 +1,54 @@
+body {
+  background: linear-gradient(135deg, #ffb6c1, #ffd6e0);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+.text {
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #ff4d6d;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background-color: #adb5bd;
+  position: relative;
+}
