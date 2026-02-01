@@ -41,10 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* 💘 YES click */
-  yesBtn.addEventListener("click", () => {
-    music.volume = 0.6;
-    music.play();
-    explodeHearts();
+ yesBtn.addEventListener("click", () => {
+  // 🎵 Mobile-safe music start
+  music.currentTime = 0;
+  music.muted = false;
+  music.volume = 0.6;
+
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {});
+  }
+
+  explodeHearts();
 
     setTimeout(() => {
       document.body.innerHTML = `
