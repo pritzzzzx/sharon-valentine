@@ -22,7 +22,7 @@ yesBtn.addEventListener("click", () => {
       <h1 style="font-size:50px; color:#ff4d6d;">YAYYYYY CUTU 💖</h1>
       <p style="font-family:Poppins; font-size:20px;">
         You just made me the happiest person alive 😭💘<br><br>
-        I love you so much, Sharon Arlin 🧸🌹
+        I love you so much, wifey Sharon. thank you for everything cutu 🧸🌹
       </p>
     </div>
   `;
