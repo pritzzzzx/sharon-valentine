@@ -1,3 +1,17 @@
+let musicStarted = false;
+
+document.addEventListener("click", () => {
+  if (!musicStarted) {
+    const music = document.getElementById("bg-music");
+    music.currentTime = 0;
+    music.volume = 0.6;
+
+    const p = music.play();
+    if (p !== undefined) p.catch(() => {});
+
+    musicStarted = true;
+  }
+}, { once: true });
 document.addEventListener("DOMContentLoaded", () => {
   const noBtn = document.getElementById("no");
   const yesBtn = document.getElementById("yes");
