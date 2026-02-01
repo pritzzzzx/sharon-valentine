@@ -1,32 +1,39 @@
 body {
   background: linear-gradient(135deg, #ffb6c1, #ffd6e0);
   height: 100vh;
+  margin: 0;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Comic Sans MS', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  width: 350px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 35px;
+  border-radius: 30px;
+  width: 360px;
   text-align: center;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 2;
 }
 
-h1 {
+.cutu {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
   color: #ff4d6d;
+  margin-bottom: 15px;
 }
 
 .text {
   font-size: 15px;
-  margin-top: 15px;
+  line-height: 1.6;
 }
 
 h2 {
-  margin-top: 20px;
+  margin-top: 25px;
   color: #ff4d6d;
 }
 
@@ -36,11 +43,12 @@ h2 {
 
 button {
   font-size: 18px;
-  padding: 10px 25px;
+  padding: 12px 28px;
   border: none;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
   margin: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 #yes {
@@ -51,4 +59,28 @@ button {
 #no {
   background-color: #adb5bd;
   position: relative;
+}
+
+/* Floating hearts */
+.hearts::before,
+.hearts::after {
+  content: "💖 💕 💗 💓 💞";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: float 12s linear infinite;
+  opacity: 0.5;
+}
+
+.hearts::after {
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-120%);
+  }
 }
