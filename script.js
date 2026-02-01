@@ -1,17 +1,16 @@
+// ===== MOBILE-SAFE ONE-TAP MUSIC START =====
 let musicStarted = false;
-
 document.addEventListener("click", () => {
   if (!musicStarted) {
     const music = document.getElementById("bg-music");
     music.currentTime = 0;
     music.volume = 0.6;
-
-    const p = music.play();
-    if (p !== undefined) p.catch(() => {});
-
+    const playPromise = music.play();
+    if (playPromise !== undefined) playPromise.catch(() => {});
     musicStarted = true;
   }
 }, { once: true });
+
 document.addEventListener("DOMContentLoaded", () => {
   const noBtn = document.getElementById("no");
   const yesBtn = document.getElementById("yes");
@@ -19,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const bg = document.getElementById("floating-bg");
   const textBox = document.querySelector(".text");
 
-  /* 🏃 NO button runs away */
+  /* ===== NO BUTTON RUNS AWAY ===== */
   noBtn.addEventListener("mouseover", () => {
     const x = Math.random() * 300 - 150;
     const y = Math.random() * 300 - 150;
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
   });
 
-  /* 💥 Heart explosion */
+  /* ===== HEART EXPLOSION ===== */
   function explodeHearts() {
     for (let i = 0; i < 40; i++) {
       const heart = document.createElement("div");
@@ -54,46 +53,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* 💘 YES click */
- yesBtn.addEventListener("click", () => {
-  // 🎵 Mobile-safe music start
-  music.currentTime = 0;
-  music.muted = false;
-  music.volume = 0.6;
+  /* ===== YES BUTTON CLICK ===== */
+  yesBtn.addEventListener("click", () => {
+    // 💖 Music plays safely (already unlocked above)
+    music.currentTime = 0;
+    music.muted = false;
+    music.volume = 0.6;
+    const playPromise = music.play();
+    if (playPromise !== undefined) playPromise.catch(() => {});
 
-  const playPromise = music.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {});
-  }
+    // 💥 Heart explosion
+    explodeHearts();
 
-  explodeHearts();
-
-    setTimeout(() => {
-      document.body.innerHTML = `
-        <div style="
-          height:100vh;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          flex-direction:column;
-          background: linear-gradient(135deg, #ffb6c1, #ffd6e0);
-          text-align:center;
-        ">
-          <h1 style="font-family:'Pacifico', cursive; font-size:52px; color:#ff4d6d;">
-            YAYYYYY CUTU 💖💖💖
-          </h1>
-          <p style="font-family:Poppins; font-size:20px;">
-            You just made me the happiest person alive 😭<br><br>
-            I love you endlessly, Sharon Arlin 🧸🌹
-          </p>
-        </div>
-      `;
-    }, 1600);
+    // ✅ Show YES overlay without destroying background
+    showYesScreen();
   });
 
-  /* 🌸 Floating hearts & teddies (FORCED VISIBLE) */
-  const emojis = ["💖", "💕", "🧸", "💞", "💗"];
+  /* ===== SHOW YES SCREEN FUNCTION ===== */
+  function showYesScreen() {
+    const screen = document.createElement("div");
 
+    screen.style.position = "fixed";
+    screen.style.inset = "0";
+    screen.style.background = "linear-gradient(135deg, #ffb6c1, #ffd6e0)";
+    screen.style.display = "flex";
+    screen.style.flexDirection = "column";
+    screen.style.justifyContent = "center";
+    screen.style.alignItems = "center";
+    screen.style.zIndex = "9998";
+    screen.style.textAlign = "center";
+
+    screen.innerHTML = `
+      <h1 style="font-family:'Pacifico', cursive; font-size:52px; color:#ff4d6d;">
+        YAYYYYY CUTU 💖
+      </h1>
+      <p style="font-family:Poppins; font-size:20px; max-width:80%;">
+        You just made me the happiest person alive 😭<br><br>
+        I love you endlessly, Sharon Arlin 🧸🌹
+      </p>
+    `;
+
+    document.body.appendChild(screen);
+  }
+
+  /* ===== FLOATING HEARTS & TEDDIES ===== */
+  const emojis = ["💖", "💕", "🧸", "💞", "💗"];
   setInterval(() => {
     const el = document.createElement("div");
     el.className = "float";
@@ -105,7 +109,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => el.remove(), 12000);
   }, 400);
 
-  /* ⏳ Days since Jan 17, 2025 */
+  /* ===== SPARKLE CURSOR ===== */
+  document.addEventListener("mousemove", (e) => {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = e.clientX + "px";
+    sparkle.style.top = e.clientY + "px";
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 800);
+  });
+
+  /* ===== DAYS SINCE JAN 17, 2025 ===== */
   const startDate = new Date("2025-01-17");
   const today = new Date();
   const daysSince = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
@@ -115,12 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
   daysP.innerHTML = `💞 We’ve been talking for <b>${daysSince}</b> beautiful days 💞`;
   textBox.appendChild(daysP);
 
-  /* 💘 Valentine’s Day countdown */
+  /* ===== VALENTINE’S DAY COUNTDOWN ===== */
   const year =
     today.getMonth() > 1 || (today.getMonth() === 1 && today.getDate() > 14)
       ? today.getFullYear() + 1
       : today.getFullYear();
-
   const valentines = new Date(year, 1, 14);
   const daysLeft = Math.ceil((valentines - today) / (1000 * 60 * 60 * 24));
 
