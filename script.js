@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yes");
   const music = document.getElementById("bg-music");
   const bg = document.getElementById("floating-bg");
+  const textBox = document.querySelector(".text");
 
   /* 🏃 NO button runs away */
   noBtn.addEventListener("mouseover", () => {
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1600);
   });
 
-  /* 🌸 Floating hearts & teddies */
+  /* 🌸 Floating hearts & teddies (FORCED VISIBLE) */
   const emojis = ["💖", "💕", "🧸", "💞", "💗"];
 
   setInterval(() => {
@@ -80,38 +81,29 @@ document.addEventListener("DOMContentLoaded", () => {
     bg.appendChild(el);
 
     setTimeout(() => el.remove(), 12000);
-  }, 500);
-
-  /* ✨ Sparkle cursor */
-  document.addEventListener("mousemove", (e) => {
-    const sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    sparkle.style.left = e.clientX + "px";
-    sparkle.style.top = e.clientY + "px";
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => sparkle.remove(), 800);
-  });
+  }, 400);
 
   /* ⏳ Days since Jan 17, 2025 */
   const startDate = new Date("2025-01-17");
   const today = new Date();
   const daysSince = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 
-  const daysText = document.createElement("p");
-  daysText.innerHTML = `💞 We’ve been talking for <b>${daysSince}</b> beautiful days 💞`;
-  daysText.style.marginTop = "15px";
-  daysText.style.color = "#ff4d6d";
-  document.querySelector(".text").appendChild(daysText);
+  const daysP = document.createElement("p");
+  daysP.className = "counter";
+  daysP.innerHTML = `💞 We’ve been talking for <b>${daysSince}</b> beautiful days 💞`;
+  textBox.appendChild(daysP);
 
-  /* 💘 Countdown to Valentine’s Day */
-  const valentines = new Date(`${today.getFullYear()}-02-14`);
-  if (today > valentines) valentines.setFullYear(today.getFullYear() + 1);
+  /* 💘 Valentine’s Day countdown */
+  const year =
+    today.getMonth() > 1 || (today.getMonth() === 1 && today.getDate() > 14)
+      ? today.getFullYear() + 1
+      : today.getFullYear();
 
+  const valentines = new Date(year, 1, 14);
   const daysLeft = Math.ceil((valentines - today) / (1000 * 60 * 60 * 24));
 
-  const vText = document.createElement("p");
-  vText.innerHTML = `💘 ${daysLeft} days until Valentine’s Day 💘`;
-  vText.style.color = "#ff4d6d";
-  document.querySelector(".text").appendChild(vText);
+  const vP = document.createElement("p");
+  vP.className = "counter";
+  vP.innerHTML = `💘 ${daysLeft} days until Valentine’s Day 💘`;
+  textBox.appendChild(vP);
 });
